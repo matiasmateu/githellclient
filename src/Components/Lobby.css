@@ -1,0 +1,35 @@
+.Buttons {
+    margin: 0 auto;
+    width: 45%
+}
+
+.Lobby {
+    margin: auto;
+    text-align: center;
+    align-content: center;
+    font-size: 50px;
+    padding: 45px;
+}
+
+.Button1 {
+    background-color: #000000;
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 100px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    text-size-adjust: 20 px;
+    margin: 10px
+}
+
+.Button2 {
+    background-color: #000000;
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 100px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    margin: 10px
+}
