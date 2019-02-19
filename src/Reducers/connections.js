@@ -1,5 +1,5 @@
-import {USER_CONNECTED} from '../Actions/connections'
-import {USER_DISCONNECTED} from '../Actions/connections'
+import {USER_CONNECTED,USER_DISCONNECTED} from '../Actions/connections'
+
 
 var initialState = {player1:false,player2:false}
 
