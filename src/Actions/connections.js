@@ -16,10 +16,10 @@ const userDisconnected = user => ({
 
 export const userConnection = (user) => (dispatch,getState) => {
     dispatch(userConnected(user))
-    socket.send(JSON.stringify({type:"login",user:user}))
+    socket.send(JSON.stringify({type:"Login",user:user}))
 }
 
 export const userDisconnection = (user) => (dispatch,getState) => {
     dispatch(userDisconnected(user))
-    socket.send(JSON.stringify({type:"logout",user:user}))
+    socket.send(JSON.stringify({type:"Logout",user:user}))
 }
