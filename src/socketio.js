@@ -18,8 +18,6 @@ export default class SocketIO {
     };
 
     onmessage = function (e) {
-        if (typeof e.data === 'string') {
-            console.log("Received: '" + e.data + "'");
-        }
+        console.log("Message Received")
     };
 }

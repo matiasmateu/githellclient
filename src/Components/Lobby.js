@@ -2,9 +2,17 @@ import "./Lobby.css"
 import React from 'react'
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { userDisconnection, userConnection } from '../Actions/connections'
+import {socket} from '../Store'
+
 
 class Lobby extends Component {
+  sendUserDisconnectionToServer (user) {
+    socket.send(JSON.stringify({ type: "Logout", user: user }))
+  }
+
+  sendUserConnectionToServer (user) {
+    socket.send(JSON.stringify({ type: "Login", user: user }))
+  }
 
   onClickButton = (event) => {
     (event.target.innerText==="Ready") ? this.props.userDisconnection(event.target.name) : this.props.userConnection(event.target.name)
@@ -29,4 +37,6 @@ const mapStateToProps = state => ({
   users: state
 })
 
-export default connect(mapStateToProps, { userConnection, userDisconnection })(Lobby)
+
+export default connect(mapStateToProps)(Lobby)
+
