@@ -16,5 +16,6 @@ const enhancer = compose(
     applyMiddleware(ReduxThunk,socketIo(socket)),
     devTools
 )
-const store = createStore(reducer,enhancer)
+export const store = createStore(reducer,enhancer)
+
 export default store
