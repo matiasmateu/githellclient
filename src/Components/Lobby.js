@@ -15,7 +15,7 @@ class Lobby extends Component {
   }
 
   onClickButton = (event) => {
-    (event.target.innerText==="Ready") ? this.props.userDisconnection(event.target.name) : this.props.userConnection(event.target.name)
+    (event.target.innerText==="Ready") ? this.sendUserDisconnectionToServer(event.target.name) : this.sendUserConnectionToServer(event.target.name)
   }
 
   render() {
