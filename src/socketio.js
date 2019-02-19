@@ -1,15 +1,21 @@
-import io from 'socket.io-client'
-import {baseURL} from './constants'
-
-
-export default class SocketIO{
+export default class SocketIO {
     socket = null
 
-    connect(){
-        this.socket = io.openSocket('http://localhost:3000');
-    }
+    onerror = function () {
+        console.log('Connection Error');
+    };
 
-    disconnect(){
-        //this.socket.disconnect()
-    }
+    onopen = function () {
+        console.log('WebSocket Client Connected!!!');
+    };
+
+    onclose = function () {
+        console.log('echo-protocol Client Closed');
+    };
+
+    onmessage = function (e) {
+        if (typeof e.data === 'string') {
+            console.log("Received: '" + e.data + "'");
+        }
+    };
 }
