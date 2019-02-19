@@ -19,3 +19,4 @@ export const userConnection = (user) => (dispatch,getState) => {
 export const userDisconnection = (user) => (dispatch,getState) => {
     dispatch(userDisconnected(user))
 }
+
