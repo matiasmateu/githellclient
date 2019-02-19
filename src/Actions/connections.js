@@ -1,8 +1,5 @@
-import { socket} from "../Store"
-
 export const USER_CONNECTED = "USER_CONNECTED"
 export const USER_DISCONNECTED = "USER_DISCONNECTED"
-
 
 const userConnected = user => ({
     type:USER_CONNECTED,
@@ -16,10 +13,9 @@ const userDisconnected = user => ({
 
 export const userConnection = (user) => (dispatch,getState) => {
     dispatch(userConnected(user))
-    socket.send(JSON.stringify({type:"login",user:user}))
 }
+
 
 export const userDisconnection = (user) => (dispatch,getState) => {
     dispatch(userDisconnected(user))
-    socket.send(JSON.stringify({type:"logout",user:user}))
 }
