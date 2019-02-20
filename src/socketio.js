@@ -1,4 +1,4 @@
-
+/*
 
 export default class SocketIO {
 
@@ -20,4 +20,4 @@ export default class SocketIO {
     onmessage = function (e) {
         console.log("Message Received")
     };
-}
+}*/

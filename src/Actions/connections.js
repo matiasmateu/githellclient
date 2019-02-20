@@ -2,22 +2,22 @@ export const USER_CONNECTED = "USER_CONNECTED"
 export const USER_DISCONNECTED = "USER_DISCONNECTED"
 
 
-const userConnected = user => ({
+const userConnected = data => ({
     type:USER_CONNECTED,
-    user
+    payload : data
 })
 
-const userDisconnected = user => ({
+const userDisconnected = data => ({
     type:USER_DISCONNECTED,
-    user
+    payload : data
 })
 
-export const userConnection = (user) => (dispatch,getState) => {
-    dispatch(userConnected(user))
+export const userConnection = (data) => (dispatch) => {
+    dispatch(userConnected(data))
 }
 
 
-export const userDisconnection = (user) => (dispatch,getState) => {
-    dispatch(userDisconnected(user))
+export const userDisconnection = (data) => (dispatch) => {
+    dispatch(userDisconnected(data))
 }
 

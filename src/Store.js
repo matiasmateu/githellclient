@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import ReduxThunk from 'redux-thunk'
 import reducers from './Reducers/index'
+import { customMiddleware } from './middleware';
 
 
 
@@ -11,13 +12,15 @@ const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_E
 
 var W3CWebSocket = require('websocket').w3cwebsocket;
 
+export const socket = new W3CWebSocket('ws://localhost:8080/', 'echo-protocol');
+
+
 const enhancer = compose(
-    applyMiddleware(ReduxThunk),
+    applyMiddleware(ReduxThunk,customMiddleware),
     devTools
 )
 const store = createStore(reducer, enhancer)
 
-export const socket = new W3CWebSocket('ws://localhost:8080/', 'echo-protocol');
 
 // When a connection is made
 socket.onopen = function () {
@@ -43,8 +46,6 @@ socket.onclose = function (code, reason) {
 window.addEventListener('beforeunload', function () {
     socket.close();
 });
-
-
 
 
 export default store

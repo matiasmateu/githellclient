@@ -2,29 +2,18 @@ import "./Lobby.css"
 import React from 'react'
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import {socket} from '../Store'
+import {userIsNowConnected,userIsNowDisconnected} from '../Actions/STSactions'
 
 
 class Lobby extends Component {
-  sendUserDisconnectionToServer (user) {
-    socket.send(JSON.stringify({ type: "Logout", user: user }))
-  }
-
-  sendUserConnectionToServer (user) {
-    socket.send(JSON.stringify({ type: "Login", user: user }))
-  }
-
-  sendGameStartedToServer(users) {
-    socket.send(JSON.stringify({type:"NEW_GAME"}))
-  }
 
   onClickButton = (event) => {
-    (event.target.innerText==="Ready") ? this.sendUserDisconnectionToServer(event.target.name) : this.sendUserConnectionToServer(event.target.name)
+    (event.target.innerText==="Ready") ? this.props.userIsNowDisconnected(event.target.name)  : this.props.userIsNowConnected(event.target.name)
   }
 
   startGameButton = (event) => {
     if (event.target.innerText === "START GAME") {
-      this.sendGameStartedToServer()
+      this.props.sendToServer('NEW_GAME',{isRunning:true})
     }
   }
 
@@ -51,5 +40,5 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps)(Lobby)
+export default connect(mapStateToProps,{userIsNowConnected,userIsNowDisconnected})(Lobby)
 
