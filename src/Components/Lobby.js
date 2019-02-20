@@ -2,7 +2,7 @@ import "./Lobby.css"
 import React from 'react'
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import {userIsNowConnected,userIsNowDisconnected} from '../Actions/STSactions'
+import {userIsNowConnected,userIsNowDisconnected,sendNewGameRequest} from '../Actions/STSactions'
 
 
 class Lobby extends Component {
@@ -13,7 +13,8 @@ class Lobby extends Component {
 
   startGameButton = (event) => {
     if (event.target.innerText === "START GAME") {
-      this.props.sendToServer('NEW_GAME',{isRunning:true})
+      this.props.sendNewGameRequest()
+      
     }
   }
 
@@ -40,5 +41,5 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps,{userIsNowConnected,userIsNowDisconnected})(Lobby)
+export default connect(mapStateToProps,{userIsNowConnected,userIsNowDisconnected,sendNewGameRequest})(Lobby)
 
