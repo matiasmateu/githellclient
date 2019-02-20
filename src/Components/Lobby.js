@@ -14,8 +14,18 @@ class Lobby extends Component {
     socket.send(JSON.stringify({ type: "Login", user: user }))
   }
 
+  sendGameStartedToServer(users) {
+    socket.send(JSON.stringify({type:"NEW_GAME"}))
+  }
+
   onClickButton = (event) => {
     (event.target.innerText==="Ready") ? this.sendUserDisconnectionToServer(event.target.name) : this.sendUserConnectionToServer(event.target.name)
+  }
+
+  startGameButton = (event) => {
+    if (event.target.innerText === "START GAME") {
+      this.sendGameStartedToServer()
+    }
   }
 
   render() {
@@ -28,9 +38,12 @@ class Lobby extends Component {
         <button name="player2" className="Button2" onClick={this.onClickButton}>
         {(this.props.users.connections.player2)? "Ready" : "Waiting..."}
         </button>
+        <button name="start" className="startgame" onClick={this.startGameButton}>
+          {(this.props.users.connections.player1 && this.props.users.connections.player2) ? "START GAME" : "Waiting for Players"}
+        </button>
       </div>
     );
-  }
+     }
 }
 
 const mapStateToProps = state => ({
