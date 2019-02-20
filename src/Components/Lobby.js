@@ -15,6 +15,7 @@ class Lobby extends Component {
     if (event.target.innerText === "START GAME") {
       this.props.sendNewGameRequest()
       
+      
     }
   }
 
