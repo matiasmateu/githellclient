@@ -2,6 +2,7 @@
 export const NEW_GAME = "NEW_GAME"
 export const GAME_OVER = "GAME_OVER"
 
+/*
 const newGameStarted = game => ({
     type:NEW_GAME,
     game
@@ -18,4 +19,4 @@ const gameOverTotal = game => ({
 
 export const gameOver = (game) => (dispatch) => {
     dispatch(gameOverTotal(game))
-}
+}*/

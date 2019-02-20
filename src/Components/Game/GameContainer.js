@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import GameDetails from './GameDetails'
 import {connect} from 'react-redux'
-import {gameOver} from '../../Actions/game'
+//import {gameOver} from '../../Actions/game'
 import './GameDetails.css'
 
 class GameContainer extends Component{
     state = {
+        isRunning : this.props.game.isRunning,
         x:1,
         y:220
       }
@@ -17,10 +18,11 @@ class GameContainer extends Component{
       updateAnimationState() {
         this.setState(prevState => ({ x: prevState.x + 10 }));
         if(this.state.x>1000){
+          this.setState({isRunning:false})
           this.props.gameOver()
         }
     
-        if (this.props.game.isRunning){
+        if (this.state.isRunning){
           this.rAF = requestAnimationFrame(this.updateAnimationState);
         }
       }
@@ -49,4 +51,4 @@ const mapStateToProps = state => ({
     game: state.game
 })
       
-export default connect(mapStateToProps,{gameOver})(GameContainer)
+export default connect(mapStateToProps,)(GameContainer)

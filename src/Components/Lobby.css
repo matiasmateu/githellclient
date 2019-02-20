@@ -33,3 +33,17 @@
     -webkit-border-radius: 10px;
     margin: 10px
 }
+
+.startgame {
+    margin: auto;
+    text-align: center;
+    align-content: center;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    margin: 10px 
+}

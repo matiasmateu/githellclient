@@ -1,6 +1,6 @@
 import {NEW_GAME,GAME_OVER} from '../Actions/game'
 
-var initialState = {isRunning:true,player1:true,player2:false}
+var initialState = {isRunning:false,player1:true,player2:false}
 
 export default (state = initialState,action={})=>{
     switch (action.type) {
