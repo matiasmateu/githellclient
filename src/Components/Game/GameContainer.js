@@ -2,25 +2,22 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './GameDetails.css'
 import { updatePlayer,sendGameOver } from '../../Actions/STSactions'
-import { Stage, Circle, Layer, } from 'react-konva'
+import Player from './Player';
 
 class GameContainer extends Component {
-
-  state = {ctx:null}
+  player = new Player()
+  state = {}
 
   componentDidMount() {
     this.setState({ctx:this.refs.canvas.getContext("2d")})
-    /*
-this.props.updatePlayer({ player:'player1',x: this.props.player1.x,y:this.props.player1.y +1})
-      this.props.updatePlayer({ player:'player2',x: this.props.player2.x,y:this.props.player2.y +2})
-    */
-
     if (this.props.game.isRunning) {
     this.rAF = requestAnimationFrame(this.updateAnimationState);
     document.addEventListener('keydown', (event) => {
       switch (event.key){
         case 'p':
-          return this.state.ctx.fillText("TEST", 210, 75)
+          return ''
+        case 'i':
+          return console.log(this.state.player)
         case 'g':
           return this.props.sendGameOver()
         case 'ArrowRight':
@@ -40,46 +37,32 @@ this.props.updatePlayer({ player:'player1',x: this.props.player1.x,y:this.props.
         case 's':
           return this.props.updatePlayer({ player:'player2',x: this.props.player2.x,y:this.props.player2.y+10})
         default:
-          console.log(event.key)
         break;
       }
     });
   }
   }
 
+
+
   updateAnimationState = () => {
+    console.log(this.state)
+    this.state.ctx.clearRect(0, 0, 500, 800);
     // CHANGE THE STATE OF PLAYER
     if (this.props.game.isRunning) {
+      this.player.update(this.state.ctx)
+      this.player.jump()
+      console.log("looping from RAF")
       this.rAF = requestAnimationFrame(this.updateAnimationState);
     }
   }
+
   render() {
   
       if (this.props.game.isRunning) {
         return (
           <div className="MainContainer">
           <canvas ref="canvas" width={500} height={800} />
-          
-          
-          
-          {/*<Stage width={500} height={500}>
-            <Layer>
-              <Circle
-                x={this.props.player1.x}
-                y={this.props.player1.y}
-                width={50}
-                height={50}
-                fill={'green'}
-              />
-              <Circle
-                x={this.props.player2.x}
-                y={this.props.player2.y}
-                width={50}
-                height={50}
-                fill={'blue'}
-              />
-            </Layer>
-        </Stage>*/}
           </div>
         );
       } else {
