@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './GameDetails.css'
 import { updatePlayer, sendGameOver } from '../../Actions/STSactions'
-// import { Stage, Circle, Layer, } from 'react-konva'
 import Platforms from './Platforms'
 
 let nrOfPlatforms = 7
@@ -17,10 +16,6 @@ class GameContainer extends Component {
 
   componentDidMount() {
     this.setState({ ctx: this.refs.canvas.getContext("2d") })
-    /*
-this.props.updatePlayer({ player:'player1',x: this.props.player1.x,y:this.props.player1.y +1})
-      this.props.updatePlayer({ player:'player2',x: this.props.player2.x,y:this.props.player2.y +2})
-    */
 
     let position = 10
     for (var i = 0; i < nrOfPlatforms; i++) {
@@ -61,7 +56,6 @@ this.props.updatePlayer({ player:'player1',x: this.props.player1.x,y:this.props.
   }
 
   updateAnimationState = () => {
-    // CHANGE THE STATE OF PLAYER
     if (this.props.game.isRunning) {
       this.rAF = requestAnimationFrame(this.updateAnimationState);
 
@@ -70,34 +64,12 @@ this.props.updatePlayer({ player:'player1',x: this.props.player1.x,y:this.props.
       }
     }
   }
-  render() {
 
+  render() {
     if (this.props.game.isRunning) {
       return (
         <div className="MainContainer">
           <canvas ref="canvas" width={500} height={800} />
-
-
-
-
-          {/*<Stage width={500} height={500}>
-            <Layer>
-              <Circle
-                x={this.props.player1.x}
-                y={this.props.player1.y}
-                width={50}
-                height={50}
-                fill={'green'}
-              />
-              <Circle
-                x={this.props.player2.x}
-                y={this.props.player2.y}
-                width={50}
-                height={50}
-                fill={'blue'}
-              />
-            </Layer>
-        </Stage>*/}
         </div>
       );
     } else {
