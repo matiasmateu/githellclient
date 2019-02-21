@@ -65,14 +65,14 @@ export default class Player {
     }
 
     moveLeft(theX){
-        if ((this.x>0)&&(this.isMoving)){
-            this.setPosition(theX - this.width/2,this.y)
+        if ((this.x>0)){
+            this.setPosition(this.x-theX,this.y)
         }
     }
 
     moveRight(theX){
-        if((this.x + this.width < 500)&&this.isMoving){
-            this.setPosition(theX-this.width/2,this.Y)
+        if((this.x < 500)){
+            this.setPosition(this.x+theX,this.Y)
         }
     }
 

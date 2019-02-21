@@ -35,11 +35,13 @@ class GameContainer extends Component {
         case 'g':
           return this.props.sendGameOver()
         case 'ArrowRight':
-          return this.props.updatePlayer({ player:'player1',x: this.props.player1.x+10,y:this.props.player1.y})
+          return this.player.moveRight(50)
+          //this.props.updatePlayer({ player:'player1',x: this.props.player1.x+10,y:this.props.player1.y})
         case 'ArrowUp':
           return this.props.updatePlayer({ player:'player1',x: this.props.player1.x,y:this.props.player1.y-10})
         case 'ArrowLeft':
-          return this.props.updatePlayer({ player:'player1',x: this.props.player1.x-10,y:this.props.player1.y})
+          return this.player.moveLeft(50)
+          //this.props.updatePlayer({ player:'player1',x: this.props.player1.x-10,y:this.props.player1.y})
         case 'ArrowDown':
           return this.props.updatePlayer({ player:'player1',x: this.props.player1.x,y:this.props.player1.y+10})
         case 'd':
@@ -55,6 +57,7 @@ class GameContainer extends Component {
       }
     });
   }
+}
 
 
 
