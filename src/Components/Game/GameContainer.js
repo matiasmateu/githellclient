@@ -6,7 +6,10 @@ import { Stage, Circle, Layer, } from 'react-konva'
 
 class GameContainer extends Component {
 
+  state = {ctx:null}
+
   componentDidMount() {
+    this.setState({ctx:this.refs.canvas.getContext("2d")})
     /*
 this.props.updatePlayer({ player:'player1',x: this.props.player1.x,y:this.props.player1.y +1})
       this.props.updatePlayer({ player:'player2',x: this.props.player2.x,y:this.props.player2.y +2})
@@ -17,7 +20,7 @@ this.props.updatePlayer({ player:'player1',x: this.props.player1.x,y:this.props.
     document.addEventListener('keydown', (event) => {
       switch (event.key){
         case 'p':
-          return alert("GAME PAUSED")
+          return this.state.ctx.fillText("TEST", 210, 75)
         case 'g':
           return this.props.sendGameOver()
         case 'ArrowRight':
@@ -40,15 +43,9 @@ this.props.updatePlayer({ player:'player1',x: this.props.player1.x,y:this.props.
           console.log(event.key)
         break;
       }
-      if(event.key==='p'){
-        alert('GAME PAUSED');
-      }
-      
     });
   }
   }
-
- 
 
   updateAnimationState = () => {
     // CHANGE THE STATE OF PLAYER
@@ -61,7 +58,11 @@ this.props.updatePlayer({ player:'player1',x: this.props.player1.x,y:this.props.
       if (this.props.game.isRunning) {
         return (
           <div className="MainContainer">
-          <Stage width={500} height={500}>
+          <canvas ref="canvas" width={500} height={800} />
+          
+          
+          
+          {/*<Stage width={500} height={500}>
             <Layer>
               <Circle
                 x={this.props.player1.x}
@@ -78,7 +79,7 @@ this.props.updatePlayer({ player:'player1',x: this.props.player1.x,y:this.props.
                 fill={'blue'}
               />
             </Layer>
-          </Stage>
+        </Stage>*/}
           </div>
         );
       } else {
