@@ -10,6 +10,7 @@ export default (state = initialState,action={})=>{
             isRunning:action.payload.isRunning,
             gravity:action.payload.gravity,
             velocity:action.payload.velocity
+            
         }
         default:
         return state

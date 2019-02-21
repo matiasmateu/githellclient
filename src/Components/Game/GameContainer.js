@@ -49,6 +49,8 @@ class GameContainer extends Component {
     if (this.props.game.isRunning) {
       //Draw Platforms
       this.props.platforms.map(platform => this.state.ctx.fillRect(platform.X,platform.Y,100,20))
+      //Force RE-sync from the data in state
+      //this.player.setPosition(this.props.player1.x,this.props.player1.y)
       //Update Player
       this.player.update(this.state.ctx)
       this.player.jump()
