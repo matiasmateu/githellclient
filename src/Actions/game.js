@@ -1,6 +1,4 @@
-
-export const NEW_GAME = "NEW_GAME"
-export const GAME_OVER = "GAME_OVER"
+export const UPDATE_GAME = 'UPDATE_GAME'
 
 /*
 const newGameStarted = game => ({

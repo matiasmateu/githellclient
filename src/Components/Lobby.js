@@ -20,17 +20,18 @@ class Lobby extends Component {
   }
 
   render() {
+  
      return (
       <div className="Buttons">
         <h1 className="Lobby">LOBBY</h1>
         <button name="player1" className="Button1" onClick={this.onClickButton}>
-         {(this.props.users.connections.player1)? "Ready" : "Waiting..."}
+         {(this.props.users.player1)? "Ready" : "Waiting..."}
         </button>
         <button name="player2" className="Button2" onClick={this.onClickButton}>
-        {(this.props.users.connections.player2)? "Ready" : "Waiting..."}
+        {(this.props.users.player2)? "Ready" : "Waiting..."}
         </button>
         <button name="start" className="startgame" onClick={this.startGameButton}>
-          {(this.props.users.connections.player1 && this.props.users.connections.player2) ? "START GAME" : "Waiting for Players"}
+          {(this.props.users.player1 && this.props.users.player2) ? "START GAME" : "Waiting for Players"}
         </button>
       </div>
     );
@@ -38,7 +39,7 @@ class Lobby extends Component {
 }
 
 const mapStateToProps = state => ({
-  users: state
+  users: state.connections
 })
 
 
