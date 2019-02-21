@@ -47,8 +47,6 @@ this.props.updatePlayer({ player:'player1',x: this.props.player1.x,y:this.props.
   }
   }
 
- 
-
   updateAnimationState = () => {
     // CHANGE THE STATE OF PLAYER
     if (this.props.game.isRunning) {
