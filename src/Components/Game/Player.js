@@ -1,11 +1,11 @@
 export default class Player {
-    constructor() {
+    constructor(x,y) {
       this.image = new Image()
       this.image.src = './assets/gitcat.gif'
       this.width = 65
       this.height = 65
-      this.x = 250
-      this.y = 600
+      this.x = x
+      this.y = y
 
       // Frames ?
 
@@ -71,9 +71,8 @@ export default class Player {
     }
 
     moveRight(theX){
-        if((this.x < 500)){
-            this.setPosition(this.x+theX,this.Y)
-        }
+       this.x = this.x + theX
+        
     }
 
     update(ctx){

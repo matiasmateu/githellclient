@@ -1,5 +1,5 @@
 import {socket} from './Store'
-import {STS_USER_CONNECTED,STS_USER_DISCONNECTED,STS_NEW_GAME,STS_UPDATE_PLAYER,STS_GAME_OVER} from './Actions/STSactions'
+import {STS_USER_CONNECTED,STS_USER_DISCONNECTED,STS_NEW_GAME,STS_UPDATE_PLAYER,STS_GAME_OVER,STS_UPDATE_PLATFORMS} from './Actions/STSactions'
 
 export const customMiddleware = store => next => action => {
     if (action.type===STS_USER_CONNECTED){
@@ -17,6 +17,8 @@ export const customMiddleware = store => next => action => {
     if(action.type===STS_GAME_OVER){
         socket.send(JSON.stringify({ type: "GAME_OVER_REQUEST"}))
     }
-
+    if(action.type===STS_UPDATE_PLATFORMS){
+        socket.send(JSON.stringify({type:"NEW_PLATFORMS"}))
+    }
     next(action)
 }
