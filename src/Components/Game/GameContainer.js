@@ -33,10 +33,14 @@ class GameContainer extends Component {
           return 
         default:
         break;
-
-  checkCollision() {
-    platforms.forEach(function (platform) {
-
+      }
+    })
+  }
+}
+  checkCollision(player) {
+    
+    this.props.platforms.forEach(function (platform) {
+ 
       if ((player.isFalling) &&
         (player.x < platform.X + 100) &&
         (player.x + player.width > platform.X) &&
@@ -57,7 +61,7 @@ class GameContainer extends Component {
       //Update Player
       this.player.update(this.state.ctx)
       this.player.jump()
-      this.checkCollision()
+      this.checkCollision(this.player)
       //
       this.rAF = requestAnimationFrame(this.updateAnimationState);
     }
