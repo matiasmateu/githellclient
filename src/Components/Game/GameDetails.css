@@ -6,8 +6,11 @@
     margin-right: auto;
     width: 50%;
     height:50%;
+    margin-top: 5 px
 }
+
 
 canvas{
     border: 1px solid black;
+
 }

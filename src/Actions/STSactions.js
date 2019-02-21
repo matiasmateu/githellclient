@@ -3,6 +3,7 @@ export const STS_USER_DISCONNECTED = 'STS_USER_DISCONNECTED'
 export const STS_NEW_GAME = 'STS_NEW_GAME_REQUEST'
 export const STS_UPDATE_PLAYER = 'STS_UPDATE_PLAYER'
 export const STS_GAME_OVER = "STS_GAME_OVER"
+export const STS_UPDATE_PLATFORMS = "STS_UPDATE_PLATFORMS"
 
 const sendUserConnected = data => ({
     type:STS_USER_CONNECTED,
@@ -49,4 +50,12 @@ const gameOver = () => ({
 
 export const sendGameOver = () => (dispatch) => {
     dispatch(gameOver())
+}
+
+const updatePlatforms = (data) => ({
+    type:STS_UPDATE_PLATFORMS
+})
+
+export const sendPlatforms = (data) => (dispatch) => {
+    dispatch(updatePlatforms(data))
 }
