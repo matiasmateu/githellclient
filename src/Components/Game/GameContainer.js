@@ -4,10 +4,6 @@ import './GameDetails.css'
 import Player from './Player';
 import { updatePlayer, sendGameOver } from '../../Actions/STSactions'
 
-/*
-let height = 800
-let width = 500
-*/
 
 class GameContainer extends Component {
   player = new Player(this.props.player1.x,this.props.player1.y)
@@ -37,21 +33,31 @@ class GameContainer extends Component {
           return 
         default:
         break;
-      }
-    });
-  }
-}
 
+  checkCollision() {
+    platforms.forEach(function (platform) {
+
+      if ((player.isFalling) &&
+        (player.x < platform.X + 100) &&
+        (player.x + player.width > platform.X) &&
+        (player.y + player.height > platform.Y) &&
+        (player.y + player.height < platform.Y + 20)
+      ) {
+        return player.fallStop()
+
+      }
+    })
+  }
 
 
   updateAnimationState = () => {
     this.state.ctx.clearRect(0, 0, 500, 800);
     if (this.props.game.isRunning) {
-      //Draw Platforms
       this.props.platforms.map(platform => this.state.ctx.fillRect(platform.X,platform.Y,100,20))
       //Update Player
       this.player.update(this.state.ctx)
       this.player.jump()
+      this.checkCollision()
       //
       this.rAF = requestAnimationFrame(this.updateAnimationState);
     }

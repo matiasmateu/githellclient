@@ -71,8 +71,10 @@ export default class Player {
     }
 
     moveRight(theX){
-       this.x = this.x + theX
-        
+        if ((this.x<401)){
+            this.setPosition(this.x+theX,this.y)
+        }
+
     }
 
     update(ctx){
