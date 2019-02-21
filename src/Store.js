@@ -25,6 +25,7 @@ const store = createStore(reducer, enhancer)
 // When a connection is made
 socket.onopen = function () {
     console.log('Opened connection ');
+   
 };
 
 // A connection could not be made

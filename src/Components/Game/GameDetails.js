@@ -1,4 +1,4 @@
-import React ,{ Component } from 'react'
+/*import React ,{ Component } from 'react'
 import {Stage,Circle,Layer,} from 'react-konva'
 import {connect} from 'react-redux'
 
@@ -40,3 +40,4 @@ const mapStateToProps = state => ({
 })
     
 export default connect(mapStateToProps,)(GameDetails)
+/*

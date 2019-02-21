@@ -1,7 +1,8 @@
 export const STS_USER_CONNECTED = 'STS_USER_CONNECTED'
 export const STS_USER_DISCONNECTED = 'STS_USER_DISCONNECTED'
 export const STS_NEW_GAME = 'STS_NEW_GAME_REQUEST'
-export const STS_UPDATE_PLAYER1 = 'STS_UPDATE_PLAYER1'
+export const STS_UPDATE_PLAYER = 'STS_UPDATE_PLAYER'
+export const STS_GAME_OVER = "STS_GAME_OVER"
 
 const sendUserConnected = data => ({
     type:STS_USER_CONNECTED,
@@ -14,7 +15,7 @@ export const userIsNowConnected = (data) => (dispatch) => {
 
 const sendUserDisconnected = data => ({
     type:STS_USER_DISCONNECTED,
-    data:{isRunning:true}
+    data
 })
 
 export const userIsNowDisconnected = (data) => (dispatch) => {
@@ -30,11 +31,22 @@ export const sendNewGameRequest = (data) => (dispatch) => {
     dispatch(newGame(data))
 }
 
-const player1Updated = (data) => ({
-    type:STS_UPDATE_PLAYER1,
+const playerUpdated = (data) => ({
+    type:STS_UPDATE_PLAYER,
     data
 })
 
-export const updatePlayer1 = (data) => (dispatch) => {
-    dispatch(player1Updated(data))
+export const updatePlayer = (data) => (dispatch,getState) => {
+    if(getState().game.isRunning){
+        dispatch(playerUpdated(data))
+    }  
+}
+
+const gameOver = () => ({
+    type:STS_GAME_OVER
+    
+})
+
+export const sendGameOver = () => (dispatch) => {
+    dispatch(gameOver())
 }
