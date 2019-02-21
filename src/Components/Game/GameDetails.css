@@ -1,4 +1,12 @@
 .MainContainer{
     border: 2px black solid;
     text-align: center;
+    width: auto;
+    display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        height:50%;
+        margin-top: 5 px
+
 }
