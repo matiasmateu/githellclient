@@ -1,12 +1,8 @@
-
-var initialState = {x:100,y:50}
-
+var initialState = []
 
 export default (state = initialState,action={})=>{
     switch (action.type) {
-        case "UPDATE_PLAYER1":
-        return action.payload
-        case "CONCILIATION_PLAYER1":
+        case "UPDATE_FLAG":
         return action.payload
         default:
         return state

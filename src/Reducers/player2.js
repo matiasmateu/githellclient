@@ -8,6 +8,8 @@ export default (state = initialState,action={})=>{
             x:action.payload.x,
             y:action.payload.y
         }
+        case "CONCILIATION_PLAYER2":
+        return action.payload
         default:
         return state
     }
