@@ -17,7 +17,6 @@ class GameContainer extends Component {
   background = new Image()
   flag = new Image()
 
-
   componentDidMount() {
     this.setState({ ctx: this.refs.canvas.getContext("2d") })
 
@@ -55,7 +54,7 @@ class GameContainer extends Component {
       }
     })
   }
-
+  }
   checkCollision(player) {
     this.props.platforms.forEach(function (platform) {
       if ((player.isFalling) &&
@@ -67,7 +66,6 @@ class GameContainer extends Component {
         return player.fallStop()
     })
   }
-
   checkFlagCollision(player) {
     this.props.flag.forEach(function (flag) {
       if ((player.isFalling) &&
@@ -79,12 +77,10 @@ class GameContainer extends Component {
         return player.scorePoints()     
     })
   }
-
   drawBackground() {
     this.background.src = BCK
     this.state.ctx.drawImage(this.background, 0, 0)
   }
-
   updateAnimationState = () => {
     this.state.ctx.clearRect(0, 0, 680, 1410);
     this.drawBackground()
@@ -118,7 +114,6 @@ class GameContainer extends Component {
       this.rAF = requestAnimationFrame(this.updateAnimationState);
     }
   }
-
   render() {
     if (this.props.game.isRunning) {
       return (
@@ -139,10 +134,7 @@ const mapStateToProps = state => ({
   player: state.connections.playerAssigned,
   platforms: state.platforms,
   flag: state.flag,
-  playerAssigned: state.connections.playerAssigned,
-  platforms:state.platforms
-
-
+  playerAssigned: state.connections.playerAssigned
 })
 
 export default connect(mapStateToProps, { updatePlayer, sendGameOver })(GameContainer)
