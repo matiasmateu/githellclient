@@ -1,4 +1,5 @@
 export const UPDATE_GAME = 'UPDATE_GAME'
+export const CONCILIATION_WITH_SERVER = "CONCILIATION_WITH_SERVER"
 
 /*
 const newGameStarted = game => ({
@@ -18,3 +19,12 @@ const gameOverTotal = game => ({
 export const gameOver = (game) => (dispatch) => {
     dispatch(gameOverTotal(game))
 }*/
+
+export const gameCorrected = correction => ({
+    type:CONCILIATION_WITH_SERVER,
+    correction
+})
+
+export const gameCorrection = (correction) => (dispatch) => {
+    dispatch(gameCorrected(correction))
+}
