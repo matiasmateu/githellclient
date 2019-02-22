@@ -8,6 +8,7 @@ export default class Player {
       this.height = h
       this.x = x
       this.y = y
+      this.score = 0
 
       // Frames ?
 
@@ -23,6 +24,7 @@ export default class Player {
         this.x = x
         this.y = y
     }
+
     jump(){
         if (!this.isJumping&&!this.isFalling){
             this.fallSpeed = 0
@@ -33,7 +35,7 @@ export default class Player {
         }
     }
     checkJump(){
-        if (this.y > 800*0.25){
+        if (this.y > 10*0.25){
             this.setPosition(this.x,this.y - this.jumpSpeed)
         }else{
             // POINTS LOGIC
@@ -50,7 +52,7 @@ export default class Player {
     }
 
     checkFall(){
-        if (this.y < 800 - this.height) {
+        if (this.y < 660 - this.height) {
             this.setPosition(this.x,this.y+this.fallSpeed)
             this.fallSpeed++
         }else{
@@ -73,7 +75,7 @@ export default class Player {
     }
 
     moveRight(theX){
-        if ((this.x<401)){
+        if ((this.x<1320)){
             this.setPosition(this.x+theX,this.y)
         }
 
@@ -98,5 +100,11 @@ export default class Player {
 
     }
 
+    scorePoints() {
+        console.log("score function executed")
+         this.score = this.score + 10
+         this.x = 50
+         this.y = 100
+    }
 
   }

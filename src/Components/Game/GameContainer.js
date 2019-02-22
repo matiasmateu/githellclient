@@ -6,20 +6,21 @@ import { updatePlayer, sendGameOver } from '../../Actions/STSactions'
 import morty from './assets/morty.gif';
 import rick from './assets/rick.gif';
 import platform from './assets/platform.gif'
+import flag from './assets/flag.gif'
 import BCK from './assets/BCK.gif'
 
 class GameContainer extends Component {
-  player = new Player(this.props.player1.x,this.props.player1.y,50,52,morty)
-  player2 = new Player(this.props.player1.x,this.props.player1.y,80,94,rick)
+  player = new Player(this.props.player1.x, this.props.player1.y, 50, 52, morty)
+  player2 = new Player(this.props.player1.x, this.props.player1.y, 80, 94, rick)
   state = {}
   platform = new Image()
   background = new Image()
-  
+  flag = new Image()
+
 
   componentDidMount() {
-   
-    this.setState({ctx:this.refs.canvas.getContext("2d")})
- 
+    this.setState({ ctx: this.refs.canvas.getContext("2d") })
+
     if (this.props.game.isRunning) {
     this.rAF = requestAnimationFrame(this.updateAnimationState);
     document.addEventListener('keydown', (event) => {
@@ -54,37 +55,47 @@ class GameContainer extends Component {
       }
     })
   }
-}
+
   checkCollision(player) {
-    
     this.props.platforms.forEach(function (platform) {
- 
       if ((player.isFalling) &&
         (player.x < platform.X + 100) &&
         (player.x + player.width > platform.X) &&
         (player.y + player.height > platform.Y) &&
         (player.y + player.height < platform.Y + 20)
-      ) {
+      )
         return player.fallStop()
-
-      }
     })
   }
 
-  drawBackground(){
-    this.background.src = BCK
-    this.state.ctx.drawImage(this.background,0,0)
+  checkFlagCollision(player) {
+    this.props.flag.forEach(function (flag) {
+      if ((player.isFalling) &&
+        (player.x < flag.X + 100) &&
+        (player.x + player.width > flag.X) &&
+        (player.y + player.height > flag.Y) &&
+        (player.y + player.height < flag.Y + 20)
+      )
+        return player.scorePoints()     
+    })
   }
 
+  drawBackground() {
+    this.background.src = BCK
+    this.state.ctx.drawImage(this.background, 0, 0)
+  }
 
   updateAnimationState = () => {
-    this.state.ctx.clearRect(0, 0, 500, 800);
+    this.state.ctx.clearRect(0, 0, 680, 1410);
     this.drawBackground()
     if (this.props.game.isRunning) {
       let ctx2 = this.state.ctx
-      ctx2.fillStyle =  "white"
+      ctx2.fillStyle = "white"
       this.platform.src = platform
-      this.props.platforms.map(platform => ctx2.drawImage(this.platform,platform.X,platform.Y,100,28))
+      this.flag.src = flag
+      this.props.platforms.map(platform => ctx2.drawImage(this.platform, platform.X, platform.Y, 100, 28))
+      this.props.flag.map(flag => ctx2.drawImage(this.flag, flag.X, flag.Y, 100, 100))
+
       //CONCILIATION
       if ((this.player.x!==this.props.player1.x)){
         this.player.setPosition(this.props.player1.x,this.props.player1.y)
@@ -99,7 +110,11 @@ class GameContainer extends Component {
       this.player2.jump()
       this.checkCollision(this.player)
       this.checkCollision(this.player2)
-      //
+      this.checkFlagCollision(this.player)
+      this.checkFlagCollision(this.player2)     
+      ctx2.font = "30px Arial"
+      ctx2.fillText("Rick: " + this.player2.score + " pts", 1220, 45)
+      ctx2.fillText("Morty: " + this.player.score + " pts", 1220, 80)
       this.rAF = requestAnimationFrame(this.updateAnimationState);
     }
   }
@@ -108,7 +123,7 @@ class GameContainer extends Component {
     if (this.props.game.isRunning) {
       return (
         <div className="MainContainer">
-          <canvas ref="canvas" width={500} height={800} />
+          <canvas ref="canvas" width={1410} height={680} />
         </div>
       );
     } else {
@@ -121,8 +136,12 @@ const mapStateToProps = state => ({
   game: state.game,
   player1: state.player1,
   player2: state.player2,
+  player: state.connections.playerAssigned,
+  platforms: state.platforms,
+  flag: state.flag,
   playerAssigned: state.connections.playerAssigned,
   platforms:state.platforms
+
 
 })
 
