@@ -8,6 +8,7 @@ export default class Player {
       this.height = h
       this.x = x
       this.y = y
+      this.score = 0
 
       // Frames ?
 
@@ -23,6 +24,7 @@ export default class Player {
         this.x = x
         this.y = y
     }
+
     jump(){
         if (!this.isJumping&&!this.isFalling){
             this.fallSpeed = 0
@@ -98,5 +100,11 @@ export default class Player {
 
     }
 
+    scorePoints() {
+        console.log("score function executed")
+         this.score = this.score + 10
+         this.x = 50
+         this.y = 100
+    }
 
   }
