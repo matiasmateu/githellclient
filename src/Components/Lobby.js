@@ -8,7 +8,12 @@ import {userIsNowConnected,userIsNowDisconnected,sendNewGameRequest} from '../Ac
 class Lobby extends Component {
 
   onClickButton = (event) => {
-    (event.target.innerText==="Ready") ? this.props.userIsNowDisconnected(event.target.name)  : this.props.userIsNowConnected(event.target.name)
+    console.log("inside the onClick")
+    if (event.target.innerText==="Ready") {
+      this.props.userIsNowDisconnected(event.target.name) 
+    }else{
+      this.props.userIsNowConnected(event.target.name)
+    }
   }
 
   startGameButton = (event) => {

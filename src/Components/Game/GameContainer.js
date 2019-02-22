@@ -31,14 +31,24 @@ class GameContainer extends Component {
         case 'g':
           return this.props.sendGameOver()
         case 'ArrowRight':
-          this.props.updatePlayer({ player:'player1',x: this.player.x+50,y:this.player.y})
-          return this.player.moveRight(50)
-          
+          if(this.props.playerAssigned==='player1'){
+            this.props.updatePlayer({ player:this.props.playerAssigned,x: this.player.x+50,y:this.player.y})
+            return this.player.moveRight(50)
+          }else{
+            this.props.updatePlayer({ player:this.props.playerAssigned,x: this.player2.x+50,y:this.player2.y})
+            return this.player2.moveRight(50)
+          }
         case 'ArrowLeft':
-          this.props.updatePlayer({ player:'player1',x: this.player.x-50,y:this.player.y})
-          this.player.moveLeft(50)
+        if (this.props.playerAssigned==='player2'){
+          this.props.updatePlayer({ player:this.props.playerAssigned,x: this.player2.x-50,y:this.player2.y})
+          return  this.player2.moveLeft(50)
+        }else{
+          this.props.updatePlayer({ player:this.props.playerAssigned,x: this.player.x-50,y:this.player.y})
+          return  this.player.moveLeft(50)
+        }
           
-          return 
+          
+          
         default:
         break;
       }
@@ -111,7 +121,7 @@ const mapStateToProps = state => ({
   game: state.game,
   player1: state.player1,
   player2: state.player2,
-  player: state.connections.playerAssigned,
+  playerAssigned: state.connections.playerAssigned,
   platforms:state.platforms
 
 })

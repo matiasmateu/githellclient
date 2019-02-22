@@ -1,6 +1,6 @@
 export const USER_CONNECTED = "USER_CONNECTED"
 export const USER_DISCONNECTED = "USER_DISCONNECTED"
-
+export const CONNECTIONS_UPDATE = "CONNECTIONS_UPDATE"
 
 const userConnected = data => ({
     type:USER_CONNECTED,
