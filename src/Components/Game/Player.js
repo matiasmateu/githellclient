@@ -33,8 +33,13 @@ export default class Player {
         }
     }
     checkJump(){
-                this.setPosition(this.x,this.y - this.jumpSpeed)
-       
+        if (this.y > 10*0.25){
+            this.setPosition(this.x,this.y - this.jumpSpeed)
+        }else{
+            // POINTS LOGIC
+            // MOVE BACKGROUND
+            // CHANGE JUMP SPEED ACCORDING TO PLATFORMS
+        }
 
         this.jumpSpeed--
         if (this.jumpSpeed===0){
