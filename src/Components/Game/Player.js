@@ -73,7 +73,7 @@ export default class Player {
     }
 
     moveRight(theX){
-        if ((this.x<401)){
+        if ((this.x<1320)){
             this.setPosition(this.x+theX,this.y)
         }
 
