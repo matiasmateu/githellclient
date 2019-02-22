@@ -1,9 +1,11 @@
+
+
 export default class Player {
-    constructor(x,y) {
+    constructor(x,y,w,h,img) {
       this.image = new Image()
-      this.image.src = './assets/gitcat.gif'
-      this.width = 65
-      this.height = 65
+      this.image.src = img
+      this.width = w
+      this.height = h
       this.x = x
       this.y = y
 
@@ -85,9 +87,8 @@ export default class Player {
 
     draw(ctx){
         try {
-            ctx.fillRect(this.x,this.y,this.width,this.height)
-            //ctx.drawImage(this.image, 0, this.height, this.width, this.height,
-               // this.x, this.y, this.width, this.height);
+            //ctx.fillRect(this.x,this.y,this.width,this.height)
+            ctx.drawImage(this.image,this.x,this.y)
         }catch(e){
             console.log(e)
         }

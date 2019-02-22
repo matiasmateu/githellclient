@@ -3,13 +3,21 @@ import { connect } from 'react-redux'
 import './GameDetails.css'
 import Player from './Player';
 import { updatePlayer, sendGameOver } from '../../Actions/STSactions'
-
+import morty from './assets/morty.gif';
+import rick from './assets/rick.gif';
+import platform from './assets/platform.gif'
+import BCK from './assets/BCK.gif'
 
 class GameContainer extends Component {
-  player = new Player(this.props.player1.x,this.props.player1.y)
+  player = new Player(this.props.player1.x,this.props.player1.y,50,52,morty)
+  player2 = new Player(this.props.player1.x,this.props.player1.y,80,94,rick)
   state = {}
+  platform = new Image()
+  background = new Image()
+  
 
   componentDidMount() {
+   
     this.setState({ctx:this.refs.canvas.getContext("2d")})
  
     if (this.props.game.isRunning) {
@@ -53,15 +61,27 @@ class GameContainer extends Component {
     })
   }
 
+  drawBackground(){
+    this.background.src = BCK
+    this.state.ctx.drawImage(this.background,0,0)
+  }
+
 
   updateAnimationState = () => {
     this.state.ctx.clearRect(0, 0, 500, 800);
+    this.drawBackground()
     if (this.props.game.isRunning) {
-      this.props.platforms.map(platform => this.state.ctx.fillRect(platform.X,platform.Y,100,20))
+      let ctx2 = this.state.ctx
+      ctx2.fillStyle =  "white"
+      this.platform.src = platform
+      this.props.platforms.map(platform => ctx2.drawImage(this.platform,platform.X,platform.Y,100,28))
       //Update Player
+      this.player2.update(this.state.ctx)
       this.player.update(this.state.ctx)
       this.player.jump()
+      this.player2.jump()
       this.checkCollision(this.player)
+      this.checkCollision(this.player2)
       //
       this.rAF = requestAnimationFrame(this.updateAnimationState);
     }
