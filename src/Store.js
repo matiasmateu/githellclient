@@ -12,7 +12,7 @@ const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_E
 
 var W3CWebSocket = require('websocket').w3cwebsocket;
 
-export const socket = new W3CWebSocket('ws://localhost:8080/', 'echo-protocol');
+export const socket = new W3CWebSocket('https://githellapi.herokuapp.com/', 'echo-protocol');
 
 
 const enhancer = compose(
