@@ -33,13 +33,8 @@ export default class Player {
         }
     }
     checkJump(){
-        if (this.y > 800*0.25){
-            this.setPosition(this.x,this.y - this.jumpSpeed)
-        }else{
-            // POINTS LOGIC
-            // MOVE BACKGROUND
-            // CHANGE JUMP SPEED ACCORDING TO PLATFORMS
-        }
+                this.setPosition(this.x,this.y - this.jumpSpeed)
+       
 
         this.jumpSpeed--
         if (this.jumpSpeed===0){
@@ -50,7 +45,7 @@ export default class Player {
     }
 
     checkFall(){
-        if (this.y < 800 - this.height) {
+        if (this.y < 660 - this.height) {
             this.setPosition(this.x,this.y+this.fallSpeed)
             this.fallSpeed++
         }else{

@@ -68,7 +68,7 @@ class GameContainer extends Component {
 
 
   updateAnimationState = () => {
-    this.state.ctx.clearRect(0, 0, 500, 800);
+    this.state.ctx.clearRect(0, 0, 680, 1410);
     this.drawBackground()
     if (this.props.game.isRunning) {
       let ctx2 = this.state.ctx
@@ -91,7 +91,7 @@ class GameContainer extends Component {
     if (this.props.game.isRunning) {
       return (
         <div className="MainContainer">
-          <canvas ref="canvas" width={500} height={800} />
+          <canvas ref="canvas" width={1410} height={680} />
         </div>
       );
     } else {
