@@ -1,4 +1,7 @@
+/*
+
 export default class SocketIO {
+
     socket = null
 
     onerror = function () {
@@ -7,6 +10,7 @@ export default class SocketIO {
 
     onopen = function () {
         console.log('WebSocket Client Connected!!!');
+    
     };
 
     onclose = function () {
@@ -14,8 +18,6 @@ export default class SocketIO {
     };
 
     onmessage = function (e) {
-        if (typeof e.data === 'string') {
-            console.log("Received: '" + e.data + "'");
-        }
+        console.log("Message Received")
     };
-}
+}*/

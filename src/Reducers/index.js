@@ -1,6 +1,13 @@
-
 import connections from './connections'
+import game from './game'
+import player1 from './player1'
+import player2 from './player2'
+import platforms from './platforms'
 
 export default{
-    connections
+    connections,
+    game,
+    player1,
+    player2,
+    platforms
 }
