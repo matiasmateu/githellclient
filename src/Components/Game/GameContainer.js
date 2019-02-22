@@ -19,7 +19,6 @@ class GameContainer extends Component {
 
 
   componentDidMount() {
-
     this.setState({ ctx: this.refs.canvas.getContext("2d") })
 
     if (this.props.game.isRunning) {
@@ -47,8 +46,8 @@ class GameContainer extends Component {
       })
     }
   }
-  checkCollision(player) {
 
+  checkCollision(player) {
     this.props.platforms.forEach(function (platform) {
       if ((player.isFalling) &&
         (player.x < platform.X + 100) &&
@@ -68,7 +67,7 @@ class GameContainer extends Component {
         (player.y + player.height > flag.Y) &&
         (player.y + player.height < flag.Y + 20)
       )
-        return player.scorePoints()
+        return player.scorePoints()     
     })
   }
 
@@ -76,7 +75,6 @@ class GameContainer extends Component {
     this.background.src = BCK
     this.state.ctx.drawImage(this.background, 0, 0)
   }
-
 
   updateAnimationState = () => {
     this.state.ctx.clearRect(0, 0, 680, 1410);
@@ -96,9 +94,8 @@ class GameContainer extends Component {
       this.checkCollision(this.player)
       this.checkCollision(this.player2)
       this.checkFlagCollision(this.player)
-      this.checkFlagCollision(this.player2)
+      this.checkFlagCollision(this.player2)     
       ctx2.font = "30px Arial"
-      ctx2.color= "red"
       ctx2.fillText("Rick: " + this.player2.score + " pts", 1220, 45)
       ctx2.fillText("Morty: " + this.player.score + " pts", 1220, 80)
       this.rAF = requestAnimationFrame(this.updateAnimationState);
