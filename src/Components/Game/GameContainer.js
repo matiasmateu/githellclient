@@ -31,11 +31,11 @@ class GameContainer extends Component {
         case 'g':
           return this.props.sendGameOver()
         case 'ArrowRight':
-          this.props.updatePlayer({ player:'player1',x: this.props.player1.x+50,y:this.props.player1.y})
+          this.props.updatePlayer({ player:'player1',x: this.player.x+50,y:this.player.y})
           return this.player.moveRight(50)
           
         case 'ArrowLeft':
-          this.props.updatePlayer({ player:'player1',x: this.props.player1.x-50,y:this.props.player1.y})
+          this.props.updatePlayer({ player:'player1',x: this.player.x-50,y:this.player.y})
           this.player.moveLeft(50)
           
           return 
@@ -75,6 +75,13 @@ class GameContainer extends Component {
       ctx2.fillStyle =  "white"
       this.platform.src = platform
       this.props.platforms.map(platform => ctx2.drawImage(this.platform,platform.X,platform.Y,100,28))
+      //CONCILIATION
+      if ((this.player.x!==this.props.player1.x)){
+        this.player.setPosition(this.props.player1.x,this.props.player1.y)
+      }
+      if (this.player2.x!==this.props.player2.x){
+        this.player2.setPosition(this.props.player2.x,this.props.player2.y)
+      }
       //Update Player
       this.player2.update(this.state.ctx)
       this.player.update(this.state.ctx)
